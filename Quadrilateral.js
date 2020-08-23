@@ -3,15 +3,15 @@ class Quadrilateral extends GameObject {
     super(g);
     this.Width = 100;
     this.Height = 100;
-    this.Position.X = 0;
-    this.Position.Y = 0;
+    this.Vector.X = 0;
+    this.Vector.Y = 0;
   }
 
   Draw() {
     this.Game.Context.strokeStyle = this.BoundsColor;
     this.Game.Context.strokeRect(
-      this.Position.X,
-      this.Position.Y,
+      this.Vector.X,
+      this.Vector.Y,
       this.Width,
       this.Height);
 
@@ -19,6 +19,6 @@ class Quadrilateral extends GameObject {
   }
 
   Update() {
-
+    super.Update();
   }
 }

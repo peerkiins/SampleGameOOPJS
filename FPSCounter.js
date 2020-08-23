@@ -8,8 +8,8 @@ class FPSCounter extends GameObject {
 
   constructor(g) {
     super(g);
-    this.Position.X = 0;
-    this.Position.Y = 0;
+    this.Vector.X = 0;
+    this.Vector.Y = 0;
   }
 
   Draw() {
@@ -23,7 +23,7 @@ class FPSCounter extends GameObject {
 
     this.Game.Context.font = `${this.FontSize}px Verdana`;
     this.Game.Context.fillStyle = Colors.White;
-    this.Game.Context.fillText(this.LastFPS, this.Position.X, this.Position.Y + this.FontSize);
+    this.Game.Context.fillText(this.LastFPS, this.Vector.X, this.Vector.Y + this.FontSize);
 
     super.Draw();
   }

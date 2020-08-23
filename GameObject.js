@@ -1,20 +1,17 @@
 class GameObject {
 
   Game;
-  Position = new Vector2();
+  Vector = new Vector2D();
+  Physics = new Physics();
   BoundsColor = Colors.White;
-
-  IsColliding = false;
 
   constructor(g) {
     this.Game = g;
   }
 
   Draw() {
-
   }
 
   Update() {
   }
-
 }
