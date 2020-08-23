@@ -96,25 +96,10 @@ class Game {
       GameObj1.Physics.IsColliding = false;
       GameObj2.Physics.IsColliding = false;
     }
-    // if (DistanceY > (GameObj2.Height / 2) + GameObj1.Radius) {
-    //   GameObj1.Physics.IsColliding = false;
-    //   GameObj2.Physics.IsColliding = false;
-    // }
     if (DistanceX <= (GameObj2.Width / 2) + GameObj1.Radius || DistanceY <= (GameObj2.Height / 2) + GameObj1.Radius) {
       GameObj1.Physics.IsColliding = true;
       GameObj2.Physics.IsColliding = true;
     }
-    // if (DistanceY <= (GameObj2.Height / 2)) {
-    //   GameObj1.Physics.IsColliding = true;
-    //   GameObj2.Physics.IsColliding = true;
-    // }
-    // var dx = DistanceX - GameObj2.Width / 2;
-    // var dy = DistanceY - GameObj2.Height / 2;
-
-    // if (dx * dx + dy * dy <= GameObj1.Radius * GameObj1.Radius) {
-    //   GameObj1.Physics.IsColliding = true;
-    //   GameObj2.Physics.IsColliding = true;
-    // }
     console.log(GameObj1, GameObj2, GameObj1.Physics.IsColliding, GameObj2.Physics.IsColliding);
   }
 }
