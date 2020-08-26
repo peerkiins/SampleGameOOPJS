@@ -1,4 +1,4 @@
-class Rounded extends GameObject {
+class Spheroid extends GameObject {
     constructor(g) {
         super(g);
         this.Radius = 100;
@@ -17,20 +17,9 @@ class Rounded extends GameObject {
             this.sAngle,
             this.eAngle * Math.PI);
         this.Game.Context.fill();
-
-        super.Draw();
     }
 
     Update() {
-        if (!this.Physics.IsColliding) {
-            this.Physics.VelocityY += this.Physics.GRAVITY;
-
-        }
-        else if (this.Physics.IsColliding) {
-            this.Physics.VelocityY = -this.Physics.GRAVITY;
-        }
-        this.Vector.Y += this.Physics.VelocityY * this.Physics.FRICTION;
-
         super.Update();
     }
 }

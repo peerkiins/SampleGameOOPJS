@@ -5,9 +5,9 @@ class Game {
   Width = GAME_WIDTH;
   Height = GAME_HEIGHT;
   BackgroundColor = Colors.CornFlowerBlue;
+  DeltaTimeSec;
+  PrevTimeUpdate = moment().valueOf();
   GameObjects = [];
-  SphereGameObjects = [];
-
 
   Initialize = () => {
     this.CanvasElement = document.createElement("canvas");
@@ -46,14 +46,14 @@ class Game {
 
     // Object Character
 
-    let BallCharacter = new Rounded(this);
+    let BallCharacter = new Spheroid(this);
     BallCharacter.Vector.X = 300;
     BallCharacter.Vector.Y = 0;
     BallCharacter.Radius = 50;
-    this.SphereGameObjects.push(BallCharacter);
+    this.GameObjects.push(BallCharacter);
 
     requestAnimationFrame(() => this.Draw());
-    setInterval(() => { this.Update() }, 6.94);
+    setInterval(() => { this.Update() }, 100);
   }
 
   ClearDraw = () => {
@@ -63,43 +63,25 @@ class Game {
 
   Draw = () => {
     this.ClearDraw();
+
     for (let i in this.GameObjects)
       this.GameObjects[i].Draw();
-    for (let i in this.SphereGameObjects)
-      this.SphereGameObjects[i].Draw();
 
     requestAnimationFrame(this.Draw);
   }
 
   Update = () => {
-    this.DetectCollision();
-    for (let i in this.GameObjects)
-      this.GameObjects[i].Update();
-    for (let i in this.SphereGameObjects)
-      this.SphereGameObjects[i].Update();
+    this.Timeupdate();
+
+    for (let i in this.GameObjects) {
+      this.GameObjects[i].Update(this.DeltaTimeSec);
+      console.log(this.DeltaTimeSec)
+    }
   }
 
-  DetectCollision = () => {
-    let GameObj1;
-    let GameObj2;
-
-    for (let i = 0; i < this.SphereGameObjects.length; i++) {
-      GameObj1 = this.SphereGameObjects[i];
-    }
-    for (let j = 0; j < this.GameObjects.length; j++) {
-      GameObj2 = this.GameObjects[j];
-    }
-    let DistanceX = Math.abs((GameObj1.Vector.X + GameObj1.Radius / 2) - GameObj2.Vector.X + GameObj2.Width / 2);
-    let DistanceY = Math.abs((GameObj1.Vector.Y + GameObj1.Radius / 2) - GameObj2.Vector.Y + GameObj2.Height / 2);
-
-    if (DistanceX > (GameObj2.Width / 2) + GameObj1.Radius || DistanceY > (GameObj2.Height / 2) + GameObj1.Radius) {
-      GameObj1.Physics.IsColliding = false;
-      GameObj2.Physics.IsColliding = false;
-    }
-    if (DistanceX <= (GameObj2.Width / 2) + GameObj1.Radius || DistanceY <= (GameObj2.Height / 2) + GameObj1.Radius) {
-      GameObj1.Physics.IsColliding = true;
-      GameObj2.Physics.IsColliding = true;
-    }
-    console.log(GameObj1, GameObj2, GameObj1.Physics.IsColliding, GameObj2.Physics.IsColliding);
+  Timeupdate = () => {
+    this.DeltaTimeSec = (moment().valueOf() - this.PrevTimeUpdate) / 1000;
+    this.PrevTimeUpdate = moment().valueOf();
   }
+
 }
