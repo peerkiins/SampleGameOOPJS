@@ -18,8 +18,4 @@ class Spheroid extends GameObject {
             this.eAngle * Math.PI);
         this.Game.Context.fill();
     }
-
-    Update() {
-        super.Update();
-    }
 }

@@ -28,8 +28,4 @@ class FPSCounter extends GameObject {
     super.Draw();
   }
 
-  Update() {
-    super.Update();
-  }
-
 }

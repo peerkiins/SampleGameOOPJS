@@ -46,14 +46,17 @@ class Game {
 
     // Object Character
 
-    let BallCharacter = new Spheroid(this);
+    let BallCharacter = new Quadrilateral(this);
     BallCharacter.Vector.X = 300;
     BallCharacter.Vector.Y = 0;
-    BallCharacter.Radius = 50;
+    BallCharacter.Height = 50;
+    BallCharacter.Width = 50;
+    BallCharacter.isStatic = false;
+    BallCharacter.isSpheroid = true;
     this.GameObjects.push(BallCharacter);
 
     requestAnimationFrame(() => this.Draw());
-    setInterval(() => { this.Update() }, 100);
+    setInterval(() => { this.Update() }, 6.94);
   }
 
   ClearDraw = () => {
@@ -72,16 +75,23 @@ class Game {
 
   Update = () => {
     this.Timeupdate();
+    console.log(this.DeltaTimeSec)
 
     for (let i in this.GameObjects) {
       this.GameObjects[i].Update(this.DeltaTimeSec);
-      console.log(this.DeltaTimeSec)
+    }
+
+    for (let i in this.GameObjects) {
+      for (let j in this.GameObjects) {
+        if (!this.GameObjects[i].isStatic && this.GameObjects[i] != this.GameObjects[j])
+          this.GameObjects[i].IntersectsWith(this.GameObjects[j]);
+      }
     }
   }
 
   Timeupdate = () => {
+    var CurrentTimeStamp = moment().valueOf();
     this.DeltaTimeSec = (moment().valueOf() - this.PrevTimeUpdate) / 1000;
-    this.PrevTimeUpdate = moment().valueOf();
+    this.PrevTimeUpdate = CurrentTimeStamp;
   }
-
 }
