@@ -3,9 +3,9 @@ class GameObject {
   Game;
   Vector = new Vector2D();
   Velocity = new Vector2D();
-  isStatic = true;
-  isSpheroid = false;
-  isCollided = false;
+  IsStatic = true;
+  IsSpheroid = false;
+  IsCollided = false;
   BoundsColor = Colors.White;
 
   constructor(g) {
@@ -16,24 +16,21 @@ class GameObject {
   }
 
   Update(DeltaTimeSec) {
-    this.BoundsColor = this.isCollided ? Colors.Red : Colors.White;
 
-    if (!this.isStatic) {
-      if (this.isCollided) {
-        this.Vector.Y = -this.Velocity.Y * DeltaTimeSec * FRICTION;
+    if (!this.IsStatic) {
+      this.BoundsColor = this.IsCollided ? Colors.Red : Colors.White;
+      if (this.IsCollided) {
+        this.Velocity.Y = -this.Velocity.Y * RESTITUTION;
       }
       else {
         this.Velocity.Y += GRAVITY * DeltaTimeSec;
-        console.log(this.Velocity.Y)
       }
+      console.log(this.IsCollided)
       this.Vector.X += this.Velocity.X * DeltaTimeSec;
       this.Vector.Y += this.Velocity.Y * DeltaTimeSec;
-
     }
   }
 
   IntersectsWith(OtherObject) {
-
   }
-
 }

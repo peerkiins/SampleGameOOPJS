@@ -46,13 +46,12 @@ class Game {
 
     // Object Character
 
-    let BallCharacter = new Quadrilateral(this);
+    let BallCharacter = new Spheroid(this);
     BallCharacter.Vector.X = 300;
     BallCharacter.Vector.Y = 0;
-    BallCharacter.Height = 50;
-    BallCharacter.Width = 50;
-    BallCharacter.isStatic = false;
-    BallCharacter.isSpheroid = true;
+    BallCharacter.Radius = 50
+    BallCharacter.IsStatic = false;
+    BallCharacter.IsSpheroid = true;
     this.GameObjects.push(BallCharacter);
 
     requestAnimationFrame(() => this.Draw());
@@ -75,7 +74,6 @@ class Game {
 
   Update = () => {
     this.Timeupdate();
-    console.log(this.DeltaTimeSec)
 
     for (let i in this.GameObjects) {
       this.GameObjects[i].Update(this.DeltaTimeSec);
@@ -83,7 +81,7 @@ class Game {
 
     for (let i in this.GameObjects) {
       for (let j in this.GameObjects) {
-        if (!this.GameObjects[i].isStatic && this.GameObjects[i] != this.GameObjects[j])
+        if (!this.GameObjects[i].IsStatic && this.GameObjects[i] != this.GameObjects[j] && this.GameObjects[j] != this.FPSCounter)
           this.GameObjects[i].IntersectsWith(this.GameObjects[j]);
       }
     }

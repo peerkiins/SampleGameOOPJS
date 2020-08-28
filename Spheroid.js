@@ -18,4 +18,31 @@ class Spheroid extends GameObject {
             this.eAngle * Math.PI);
         this.Game.Context.fill();
     }
+
+    IntersectsWith(OtherObject) {
+        console.log(this)
+        console.log(OtherObject)
+        var distX = Math.abs(this.Vector.X - OtherObject.Vector.X - OtherObject.Width / 2);
+        var distY = Math.abs(this.Vector.Y - OtherObject.Vector.Y - OtherObject.Height / 2);
+
+        if (distX <= (OtherObject.Width / 2)) {
+            this.IsCollided = true;
+        }
+        if (distY <= (OtherObject.Height / 2)) {
+            this.IsCollided = true;
+        }
+        if (distX > ((OtherObject.Width / 2) + this.Radius)) {
+            this.IsCollided = false;
+        }
+        if (distY > ((OtherObject.Height / 2) + this.Radius)) {
+            this.IsCollided = false;
+        }
+
+        // var dx = distX - OtherObject.Width / 2;
+        // var dy = distY - OtherObject.Height / 2;
+        // if (dx * dx + dy * dy <= (this.Radius * this.Radius)) {
+        //     this.IsCollided = true;
+        // }
+        super.IntersectsWith();
+    }
 }

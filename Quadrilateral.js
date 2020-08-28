@@ -19,14 +19,15 @@ class Quadrilateral extends GameObject {
   }
 
   IntersectsWith(OtherObject) {
-    if (OtherObject.Vector.X > this.Width + this.Vector.X || this.Vector.X > OtherObject.Vector.X + OtherObject.Width ||
-      OtherObject.Vector.Y > this.Height + this.Vector.Y || this.Vector.Y > OtherObject.Vector.Y + OtherObject.Height) {
-      this.isCollided = false;
+    if (OtherObject.Vector.X > this.Width + this.Vector.X ||
+      this.Vector.X > OtherObject.Width + OtherObject.Vector.X ||
+      OtherObject.Vector.Y > this.Height + this.Vector.Y ||
+      this.Vector.Y > OtherObject.Height + OtherObject.Vector.Y) {
+      this.IsCollided = false;
     }
     else {
-      this.isCollided = true;
+      this.IsCollided = true;
     }
-
     super.IntersectsWith();
   }
 }
