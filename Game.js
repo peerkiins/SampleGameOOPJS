@@ -19,6 +19,8 @@ class Game {
     this.CanvasElement.style.marginTop = "100px";
     document.body.appendChild(this.CanvasElement);
 
+    document.addEventListener("keydown", this.onKeyDown);
+
     this.Context = this.CanvasElement.getContext("2d");
 
     // Initialize FPS Object
@@ -33,8 +35,8 @@ class Game {
     let rectangle1 = new Quadrilateral(this);
     rectangle1.Width = 200;
     rectangle1.Height = 30;
-    rectangle1.Vector.X = 600;
-    rectangle1.Vector.Y = 700;
+    rectangle1.Vector.X = 650;
+    rectangle1.Vector.Y = 600;
     this.GameObjects.push(rectangle1);
 
     let rectangle2 = new Quadrilateral(this);
@@ -47,11 +49,10 @@ class Game {
     // Object Character
 
     let BallCharacter = new Spheroid(this);
-    BallCharacter.Vector.X = 300;
-    BallCharacter.Vector.Y = 0;
+    BallCharacter.Vector.X = 200;
+    BallCharacter.Vector.Y = 10;
     BallCharacter.Radius = 50
     BallCharacter.IsStatic = false;
-    BallCharacter.IsSpheroid = true;
     this.GameObjects.push(BallCharacter);
 
     requestAnimationFrame(() => this.Draw());
@@ -92,4 +93,15 @@ class Game {
     this.DeltaTimeSec = (moment().valueOf() - this.PrevTimeUpdate) / 1000;
     this.PrevTimeUpdate = CurrentTimeStamp;
   }
+
+  onKeyDown(e) {
+
+    console.log(e.keyCode);
+    for (let i in this.GameObjects) {
+      console.log(this.GameObjects[i])
+      console.log(e.keyCode)
+      this.GameObjects[i].onKeyDown(e.keyCode);
+    }
+  }
 }
+

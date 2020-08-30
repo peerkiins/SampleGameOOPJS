@@ -24,9 +24,11 @@ class Quadrilateral extends GameObject {
       OtherObject.Vector.Y > this.Height + this.Vector.Y ||
       this.Vector.Y > OtherObject.Height + OtherObject.Vector.Y) {
       this.IsCollided = false;
+      OtherObject.IsCollided = false;
     }
     else {
       this.IsCollided = true;
+      OtherObject.IsCollided = true;
     }
     super.IntersectsWith();
   }

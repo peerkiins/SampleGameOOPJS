@@ -17,29 +17,30 @@ class Spheroid extends GameObject {
             this.sAngle,
             this.eAngle * Math.PI);
         this.Game.Context.fill();
+
+        super.Draw
     }
 
     IntersectsWith(OtherObject) {
-        console.log(this)
-        console.log(OtherObject)
+        var Obj2Left = OtherObject.Vector.X;
+        var Obj2Right = OtherObject.Vector.X + OtherObject.Width;
         var distX = Math.abs(this.Vector.X - OtherObject.Vector.X - OtherObject.Width / 2);
         var distY = Math.abs(this.Vector.Y - OtherObject.Vector.Y - OtherObject.Height / 2);
 
-        if (distX <= (OtherObject.Width / 2)) {
+        if (distY - this.Radius < ((OtherObject.Height / 2) + this.Radius) && this.Vector.X + (this.Radius * 2) > Obj2Left && this.Vector.X < Obj2Right) {
             this.IsCollided = true;
         }
-        if (distY <= (OtherObject.Height / 2)) {
-            this.IsCollided = true;
-        }
-        if (distX > ((OtherObject.Width / 2) + this.Radius)) {
-            this.IsCollided = false;
-        }
-        if (distY > ((OtherObject.Height / 2) + this.Radius)) {
+        // if (distY - this.Radius > ((OtherObject.Height / 2) + this.Radius)) {
+        //     this.IsCollided = false;
+        //     OtherObject.IsCollided = false;
+        // }
+        else {
             this.IsCollided = false;
         }
 
         // var dx = distX - OtherObject.Width / 2;
         // var dy = distY - OtherObject.Height / 2;
+
         // if (dx * dx + dy * dy <= (this.Radius * this.Radius)) {
         //     this.IsCollided = true;
         // }
