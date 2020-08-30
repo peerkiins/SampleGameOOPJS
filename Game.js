@@ -51,7 +51,7 @@ class Game {
     let BallCharacter = new Spheroid(this);
     BallCharacter.Vector.X = 200;
     BallCharacter.Vector.Y = 10;
-    BallCharacter.Radius = 50
+    BallCharacter.Radius = 50;
     BallCharacter.IsStatic = false;
     this.GameObjects.push(BallCharacter);
 
@@ -95,7 +95,7 @@ class Game {
   }
 
   onKeyDown = (e) => {
-    console.log(e.keyCode);
+
     for (let i in this.GameObjects) {
 
       console.log(this);

@@ -30,20 +30,11 @@ class Spheroid extends GameObject {
         if (distY - this.Radius < ((OtherObject.Height / 2) + this.Radius) && this.Vector.X + (this.Radius * 2) > Obj2Left && this.Vector.X < Obj2Right) {
             this.IsCollided = true;
         }
-        // if (distY - this.Radius > ((OtherObject.Height / 2) + this.Radius)) {
-        //     this.IsCollided = false;
-        //     OtherObject.IsCollided = false;
-        // }
+
         else {
             this.IsCollided = false;
         }
 
-        // var dx = distX - OtherObject.Width / 2;
-        // var dy = distY - OtherObject.Height / 2;
-
-        // if (dx * dx + dy * dy <= (this.Radius * this.Radius)) {
-        //     this.IsCollided = true;
-        // }
         super.IntersectsWith();
     }
 }
