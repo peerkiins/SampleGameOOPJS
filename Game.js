@@ -94,14 +94,26 @@ class Game {
     this.PrevTimeUpdate = CurrentTimeStamp;
   }
 
-  onKeyDown(e) {
-
+  onKeyDown = (e) => {
     console.log(e.keyCode);
     for (let i in this.GameObjects) {
-      console.log(this.GameObjects[i])
-      console.log(e.keyCode)
-      this.GameObjects[i].onKeyDown(e.keyCode);
+
+      console.log(this);
+      if (!this.GameObjects[i].IsStatic) {
+        if (e.keyCode == 32) {
+          if (this.GameObjects[i].IsCollided) {
+            this.GameObjects[i].Velocity.Y = 10;
+          }
+        }
+        if (e.keyCode == 65) {
+          this.GameObjects[i].Velocity.X += -2;
+        }
+        if (e.keyCode == 68) {
+          this.GameObjects[i].Velocity.X += 2;
+        }
+      }
     }
   }
+
 }
 

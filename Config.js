@@ -1,4 +1,5 @@
 const GAME_WIDTH = 1024;
 const GAME_HEIGHT = 768;
-const GRAVITY = 98;
-const RESTITUTION = 0.3;
+const GRAVITY = 9.8;
+const RESTITUTION = 0.45;
+const FRICTION = 0.98;
